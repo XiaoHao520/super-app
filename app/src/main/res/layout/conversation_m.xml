@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="100px"
+    android:paddingRight="20px"
+    >
+
+
+    <TextView
+        android:paddingTop="20px"
+        android:gravity="center"
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="right"
+        android:background="@drawable/conversationme"
+        android:paddingLeft="60px"
+        android:paddingRight="100px"
+        android:text="你好"
+        android:textColor="#000"
+        android:paddingBottom="20px"/>
+</RelativeLayout>

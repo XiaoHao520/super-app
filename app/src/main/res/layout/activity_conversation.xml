@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    tools:context="com.school.activity.ConversationActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="135px"
+        android:background="#18B4ED"
+        android:paddingLeft="20px"
+        android:paddingRight="20px">
+
+        <TextView
+            android:id="@+id/back"
+            android:textColor="#fff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="返回" />
+
+        <TextView
+            android:id="@+id/nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#fff"
+            android:text="nickname"
+            android:textSize="50px" />
+
+        <ImageView
+            android:id="@+id/userHeader"
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:scrollbarAlwaysDrawVerticalTrack="false"
+            android:src="@drawable/add" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+
+
+            android:stackFromBottom="true"
+            android:transcriptMode="alwaysScroll"
+            android:dividerHeight="30px"
+            android:id="@+id/conversationList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/relativeLayout"
+            android:divider="@null"
+            android:fadeScrollbars="false"
+            android:listSelector="@android:color/transparent"
+            android:longClickable="false"
+
+            android:paddingBottom="20px"
+            android:scrollbars="none"></ListView>
+
+        <RelativeLayout
+
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+
+            android:layout_height="120px"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="#e2e0e2"
+            android:paddingLeft="20px"
+            android:paddingRight="20px">
+
+            <ImageView
+                android:id="@+id/additional"
+                android:layout_width="100px"
+                android:layout_height="100px"
+                android:layout_centerVertical="true"
+                android:src="@drawable/additional" />
+            <ImageView
+                android:id="@+id/send"
+                android:layout_width="100px"
+                android:layout_height="100px"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/send" />
+            <EditText
+                android:id="@+id/input"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@id/additional"
+                android:layout_toStartOf="@id/send"
+                android:textColorHint="#fff"
+                android:hint="输入"
+                android:paddingLeft="20px"
+                android:paddingRight="20px"
+                android:textColor="#fff" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

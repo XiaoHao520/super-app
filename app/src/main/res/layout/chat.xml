@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<TextView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:text="chat"
-    />
+    android:orientation="vertical"
+    android:background="#f6f6f7"
+    >
+
+    <TextView
+
+
+        android:layout_width="match_parent"
+        android:layout_height="135px"
+        android:background="#18B4ED"
+        android:gravity="center"
+        android:textColor="#fff"
+        android:textSize="11pt"
+        android:text="消息" />
+    <ListView
+        android:id="@+id/conversationList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="20px"
+        android:paddingLeft="20px"
+        android:paddingRight="20px">
+    </ListView>
+
+
 </LinearLayout>

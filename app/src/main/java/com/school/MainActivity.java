@@ -1,6 +1,7 @@
 package com.school;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
@@ -13,15 +14,32 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.school.activity.LoginActivity;
 import com.school.adapter.FragmentAdapter;
+import com.school.entity.UserEntity;
 import com.school.fragment.Blog;
 import com.school.fragment.Chat;
 import com.school.fragment.Home;
 import com.school.fragment.Mine;
 
+import org.litepal.crud.DataSupport;
+import org.litepal.tablemanager.Connector;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.GetUserInfoListCallback;
+import cn.jpush.im.android.api.content.CustomContent;
+import cn.jpush.im.android.api.enums.ContentType;
+import cn.jpush.im.android.api.event.MessageEvent;
+import cn.jpush.im.android.api.model.Message;
+import cn.jpush.im.android.api.model.UserInfo;
+import cn.jpush.im.api.BasicCallback;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {
 
@@ -41,11 +59,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+         SQLiteDatabase db = Connector.getDatabase();
         context = getApplicationContext();
+        JMessageClient.init(context);
+
+        JMessageClient.setDebugMode(true);
+        JMessageClient.registerEventReceiver(this);
+
+        UserEntity user = DataSupport.find(UserEntity.class, 1);
+        if (user != null) {
+
+            System.out.println("*****************************");
+            System.out.println(user.toString());
+            JMessageClient.login(user.getName(), user.getPassword(), new BasicCallback() {
+                @Override
+                public void gotResult(int i, String s) {
+                    if (i == 0) {
+                        Toast.makeText(MainActivity.this, "登录成功", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+        } else {
+            Toast.makeText(MainActivity.this, "未登录", Toast.LENGTH_LONG).show();
+        }
+        System.out.println(user);
+
+
         initView();
     }
 
@@ -75,7 +117,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), fragments);
         pages = (ViewPager) this.findViewById(R.id.viewPager);
         pages.setAdapter(fragmentAdapter);
-
         pages.setOnPageChangeListener(this);
         navbarEvents();
     }
@@ -92,6 +133,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStart() {
         super.onStart();
+
+
     }
 
     @Override
@@ -112,6 +155,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onClick(View view) {
+
+
         switch (view.getId()) {
             case R.id.f1: {
                 pages.setCurrentItem(0);
@@ -226,6 +271,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onPageScrollStateChanged(int state) {
+
+    }
+
+    public void onEvent(MessageEvent event) {
+        Message message = event.getMessage();
+        if (message != null) {
+            System.out.println(message.toString());
+            switch (message.getContentType()) {
+
+                case custom: {
+
+                    CustomContent content = (CustomContent) message.getContent();
+
+                    if ("text".equals(content.getStringValue("type"))) {
+                        Map<String, String> map = new HashMap<String, String>();
+                        map.put("from", message.getFromUser().getUserName());
+                        map.put("content", content.getStringValue("content"));
+                        map.put("date", content.getStringValue("date"));
+                        map.put("header", content.getStringValue("header"));
+                        map.put("nickname", content.getStringValue("nickname"));
+                        map.put("username", message.getFromUser().getUserName());
+                        map.put("status", "u");
+                        Chat.updateConversationList(map);
+                    }
+
+                    if ("conversation".equals(content.getStringValue("type"))) {
+                        Map<String, String> map = new HashMap<String, String>();
+                        map.put("from", content.getStringValue("from"));
+                        map.put("content", content.getStringValue("content"));
+                        map.put("date", content.getStringValue("date"));
+                        map.put("header", content.getStringValue("header"));
+                        map.put("nickname", content.getStringValue("nickname"));
+                        map.put("username", content.getStringValue("username"));
+
+                        Chat.updateConversationList(map);
+
+
+                    }
+                    break;
+                }
+
+            }
+
+
+        }
 
     }
 }

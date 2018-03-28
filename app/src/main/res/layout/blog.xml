@@ -4,9 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <WebView
+        android:id="@+id/blogWeb"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="blog" />
+         />
 
 </LinearLayout>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="E:\Super\client\super\app\libs\xstream-1.4.7.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="bce3282142b63068260f021fcbe48b72e8d71a1a">
+        <dex dex="E:\Super\client\super\app\build\intermediates\pre-dexed\debug\xstream-1.4.7_53077c28db971b745bd15b2d32af2cd2160598b5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\XIAOHAO-PC\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.5.2\ecf534dba3a8446ce84cbb797d314763be212a68\glide-3.5.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="ecf534dba3a8446ce84cbb797d314763be212a68">
+        <dex dex="E:\Super\client\super\app\build\intermediates\pre-dexed\debug\glide-3.5.2_890e16baf5bce84bce483e65db237fc4203fd7a4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Super\client\super\app\libs\fastjson-1.1.60.android.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="3b753d3b27721b709cc2061594c5b5693abf262a">
+        <dex dex="E:\Super\client\super\app\build\intermediates\pre-dexed\debug\fastjson-1.1.60.android_9cebcf1abf0252f1b6a573b1daaf0831cfc215ca.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Super\client\super\app\libs\qcloud-network-android-sdk-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="a4ed05d94260ea3b87a3f08193098c62bc6ef7a8">
+        <dex dex="E:\Super\client\super\app\build\intermediates\pre-dexed\debug\qcloud-network-android-sdk-1.0_dc5d150459d17e0b7f95a84c913ccb605b2d158f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Super\client\super\app\libs\AMap3DMap_5.4.0_AMapNavi_5.4.0_AMapSearch_5.3.1_AMapLocation_3.6.1_20171012.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="ff9d388edff1ab36cf8d93f24b76ad8de9ae0669">
+        <dex dex="E:\Super\client\super\app\build\intermediates\pre-dexed\debug\AMap3DMap_5.4.0_AMapNavi_5.4.0_AMapSearch_5.3.1_AMapLocation_3.6.1_20171012_474a652ab4c819ae394259c8faee9f8e4a12c9c4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Super\client\super\app\libs\cos-xml-android-sdk-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="7ceaf5f384adb27e09b46b53864e788ed43f0352">
+        <dex dex="E:\Super\client\super\app\build\intermediates\pre-dexed\debug\cos-xml-android-sdk-1.0_b50c4366c847d7e1d47b1fe2be7e480297d222fa.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Super\client\super\app\libs\jcore-android-1.1.9.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="d36b4154d952a6f18fd438469929820a6e598127">
+        <dex dex="E:\Super\client\super\app\build\intermediates\pre-dexed\debug\jcore-android-1.1.9_af865fcdc5061b0b45c92201e2088dc103733c8f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Super\client\super\app\libs\okhttp-3.8.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="4d060ca3190df0eda4dc13415532a12e15ca5f11">
+        <dex dex="E:\Super\client\super\app\build\intermediates\pre-dexed\debug\okhttp-3.8.1_561b7206ce95669bcfd471c320738dd1b7263ed1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Super\client\super\app\libs\volley.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="4a94601db9bdfb7dc60efabb3dea91a0675f591d">
+        <dex dex="E:\Super\client\super\app\build\intermediates\pre-dexed\debug\volley_8db1d63971ec771afa92ea6cadd13e01a4bc0b18.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Super\client\super\app\libs\jmessage-android_v2.5.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="ce14435c5f2b111adb41dca397148328c2ea034f">
+        <dex dex="E:\Super\client\super\app\build\intermediates\pre-dexed\debug\jmessage-android_v2.5.0_05da4fca69e24cbd19db870e82cd026b66ce3da0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Super\client\super\app\libs\slf4j-android-1.6.1-RC1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="a0b527e8aabcc1f1e97d1674dc3f4f0794ec5df1">
+        <dex dex="E:\Super\client\super\app\build\intermediates\pre-dexed\debug\slf4j-android-1.6.1-RC1_3b4c29b679e24b8ea962a2c1b2c35f1996e35a4a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Super\client\super\app\libs\okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="E:\Super\client\super\app\build\intermediates\pre-dexed\debug\okio-1.13.0_2228440f713b3cc5ac52626deb93ff56c8b4317b.jar" />
+    </item>
+
+</items>

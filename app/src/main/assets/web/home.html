@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>FrozenUI Demo</title>
+    <link rel="stylesheet" href="../css/frozen.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="../js/axios.js"></script>
+
+</head>
+<body ontouchstart="">
+
+<header class="ui-header ui-header-positive ui-border-b">
+    <h1>校园</h1>
+</header>
+
+<section class="ui-container">
+    <section id="lunbo">
+        <div class="ui-slider" id="slider1">
+            <ul class="ui-slider-content" style="width: 300%">
+                <li><span style="background-image:url('../images/1.jpg')"></span></li>
+                <li><span style="background-image:url('../images/2.jpg')"></span></li>
+            </ul>
+        </div>
+    </section>
+    <br>
+    <div style="width: 100%">校园生意</div>
+    <section id="stores">
+        <div id="store-list">
+
+            <ul class="ui-list ui-list-link ui-border-tb">
+
+                <li v-for="store in stores">
+                    <div class="ui-avatar">
+                        <img :src="store.avatar" style="width: 100%;height: 100%">
+                    </div>
+                    <div v-on:click="detail(store.id)" class="ui-list-info ui-border-t" :id="store.id">
+
+                            <div><span class="ui-nowrap">{{store.store_name}}</span> &nbsp; &nbsp; &nbsp;<span
+                                    style="font-size: 5px">{{store.store_business}}</span></div>
+                            <p class="ui-nowrap">{{store.introduce}}</p>
+
+                    </div>
+                </li>
+                <button v-on:click="getData">点击</button>
+            </ul>
+        </div>
+    </section>
+</section>
+
+<script src="../js/lib/zepto.min.js"></script>
+<script src="../js/frozen.js"></script>
+<script>
+    (function () {
+        var stores = new Vue({
+            el: "#store-list",
+            data: {
+                count: 0,
+                stores: []
+            },
+            methods: {
+                getData: function () {
+                    this.count++;
+                    console.log(this.count);
+                    var _this = this;
+                    axios.get('http://super.sinbel.top/stores', {
+                        params: {
+                            page: _this.count
+                        }
+                    }).then(function (response) {
+                        _this.stores.push.apply(_this.stores, response.data.data);
+                    })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                },
+                detail:function (val) {
+
+                           window.android.show(val);
+
+
+
+                   // return "http://super.sinbel.top/stores/detail?id="+val;
+                }
+
+            }
+        });
+
+        stores.getData();
+    })();
+</script>
+
+</body>
+</html>

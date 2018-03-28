@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   android:background="#fff"
+
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="250px"
+        android:orientation="horizontal">
+
+       <!-- <com.android.volley.toolbox.NetworkImageView-->
+
+        <ImageView
+            android:id="@+id/header"
+            android:layout_width="250px"
+            android:layout_height="250px"
+            android:src="@drawable/add" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:id="@+id/msgContent"
+            android:paddingTop="20px"
+
+            android:paddingLeft="20px"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+ >
+
+            <LinearLayout
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/username"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="用户名" />
+
+                <TextView
+                    android:textColor="#000"
+                    android:id="@+id/last"
+                    android:layout_marginTop="30px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="最后一条消息" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+        <TextView
+            android:textColor="#000"
+            android:id="@+id/date"
+            android:layout_alignEnd="@id/msgContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2017"
+
+            android:layout_centerVertical="true"
+            android:paddingRight="20px"
+
+            />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

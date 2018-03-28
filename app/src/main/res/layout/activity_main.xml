@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    tools:context="com.home.MainActivity">
+    tools:context="com.school.MainActivity">
 
     <FrameLayout
         android:id="@+id/frameLayout"

@@ -4,10 +4,9 @@
     android:id="@+id/mine"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-         android:text="mine"
-        />
+ <WebView
+     android:id="@+id/mine_web"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+ </WebView>
 </LinearLayout>
