@@ -7,6 +7,13 @@
         android:name="com.school.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
     <!-- 允许程序打开网络套接字 -->
+    <!--用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <!--用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <!--获取运营商信息，用于支持提供运营商信息相关的接口-->
     <uses-permission android:name="com.school.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 允许程序设置内置sd卡的写权限 -->
@@ -52,12 +59,19 @@
     <!-- 用于申请获取蓝牙信息进行室内定位 -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!--用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+    <!--这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+
+
 
     <application
         android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher">
-
+        <meta-data android:name="com.amap.api.v2.apikey" android:value="5d15ee68bf8f0686f1eef6e891ba5f15">
+        </meta-data>
         <!-- linux -->
         <!--
             <meta-data
@@ -65,7 +79,7 @@
             android:value="3c054522e623d4527bb06799412306a1" />
         -->
         <!-- windows -->
-
+        <service android:name="com.amap.api.location.APSService"></service>
         <service
             android:name="cn.jpush.android.service.PushService"
             android:enabled="true"
@@ -160,8 +174,8 @@
             android:name=".activity.MyStoresActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:name=".activity.ConversationActivity" />
+            android:name=".activity.ConversationActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".activity.RegisterActivity" />
         <activity
             android:name=".activity.CardsActivity"
@@ -169,8 +183,7 @@
         <activity
             android:name=".activity.PersonInfoActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
-
+        <activity android:name=".activity.MapActivity"   android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>

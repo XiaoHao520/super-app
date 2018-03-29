@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.school.activity.MapActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="135px"
+        android:background="#18B4ED">
+
+        <TextView
+
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="位置选择"
+            android:textAlignment="center"
+            android:textSize="50px" />
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:textAlignment="center"
+
+            android:background="#fff"
+            android:hint="长按拖动小点选择位置"
+            android:minHeight="120px"
+            android:layout_toStartOf="@+id/ensure" />
+
+        <Button
+            android:id="@+id/ensure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="确定" />
+
+    </RelativeLayout>
+
+
+    <com.amap.api.maps.MapView
+        android:id="@+id/aMap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>

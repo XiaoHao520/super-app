@@ -1,16 +1,18 @@
 package com.school.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.school.R;
 
 public class ApplyActivity extends AppCompatActivity {
-     WebView apply;
-     String url="http://www.sinbel.top/ui/web/user/apply.html";
+    WebView apply;
+    String url = "http://www.sinbel.top/ui/web/user/apply.html";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,14 +22,21 @@ public class ApplyActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        apply= (WebView) findViewById(R.id.apply);
-        WebSettings setting=apply.getSettings();
+        apply = (WebView) findViewById(R.id.apply);
+        WebSettings setting = apply.getSettings();
+        setting.setGeolocationEnabled(true);
+
         setting.setJavaScriptEnabled(true);
-        apply.addJavascriptInterface(this,"android");
+        apply.addJavascriptInterface(this, "android");
         apply.loadUrl(url);
     }
+
     @JavascriptInterface
-    public void back(){
-         this.finish();
+    public void back() {
+
+        this.finish();
     }
+
+
+
 }

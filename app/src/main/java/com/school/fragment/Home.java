@@ -60,14 +60,13 @@ public class Home extends Fragment{
         homeWeb=home.findViewById(R.id.homeWeb);
         WebSettings settings=homeWeb.getSettings();
         settings.setJavaScriptEnabled(true);
-      //  homeWeb.loadUrl("file:///android_asset/web/home.html");
+
 
         homeWeb.loadUrl("http://www.sinbel.top/ui/web/home.html");
         homeWeb.setWebViewClient(new WebViewClient(){
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-
                 homeWeb.loadUrl(request.getUrl().getPath());
                 return true;
             }

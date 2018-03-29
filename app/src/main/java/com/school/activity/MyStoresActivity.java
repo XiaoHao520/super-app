@@ -52,4 +52,13 @@ public class MyStoresActivity extends AppCompatActivity {
 
      }
 
+
+
+    @JavascriptInterface
+    public void getDetailAddress() {
+        System.out.println("打开地图");
+        Intent intent = new Intent(MyStoresActivity.this, MapActivity.class);
+        startActivity(intent);
+    }
+
 }
