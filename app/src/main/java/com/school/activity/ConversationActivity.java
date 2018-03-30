@@ -357,6 +357,7 @@ public class ConversationActivity extends AppCompatActivity implements View.OnCl
         this.finish();
     }
 
+
     public void onEvent(MessageEvent event) {
         Message message = event.getMessage();
         ContentType type = message.getContentType();

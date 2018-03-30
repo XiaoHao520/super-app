@@ -1,5 +1,6 @@
 package com.school.activity;
 
+import android.content.Intent;
 import android.content.pm.ProviderInfo;
 import android.icu.text.SimpleDateFormat;
 import android.location.Location;
@@ -34,63 +35,57 @@ import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 import com.school.R;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class MapActivity extends AppCompatActivity implements  View.OnClickListener, PoiSearch.OnPoiSearchListener, AMapLocationListener, AMap.OnMarkerDragListener, GeocodeSearch.OnGeocodeSearchListener {
+public class MapActivity extends AppCompatActivity implements View.OnClickListener, PoiSearch.OnPoiSearchListener, AMapLocationListener, AMap.OnMarkerDragListener, GeocodeSearch.OnGeocodeSearchListener {
     MapView mapView;
     public AMapLocationClient mlocationClient = null;
     public AMapLocationClientOption mLocationOption = null;
     private TextView address = null;
-    private Button searchBtn = null;
-    private static AMapLocation location;
     Marker marker;
     AMap aMap;
     GeocodeSearch geocodeSearch;
     private Button ensure;
-    private static Map<String,String> map;
+    private static Map<String, String> map;
+    Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-         map=new HashMap<String,String>();
+        map = new HashMap<String, String>();
+        intent=getIntent();
+        initView();
         mapView = (MapView) findViewById(R.id.aMap);
         mapView.onCreate(savedInstanceState);// 此方法必须重写
         aMap = mapView.getMap();
-
         aMap.setMapType(AMap.MAP_TYPE_NORMAL);
         aMap.setMinZoomLevel(15.0f);
         MyLocationStyle myLocationStyle;
         myLocationStyle = new MyLocationStyle();//
-        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATE) ;//定位一次，且将视角移动到地图中心点。
+        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATE);//定位一次，且将视角移动到地图中心点。
         aMap.setMyLocationStyle(myLocationStyle);//设置定位蓝点的Style
         aMap.getUiSettings().setMyLocationButtonEnabled(true);//设置默认定位按钮是否显示，非必需设置。
         aMap.setMyLocationEnabled(true);
         aMap.setOnMarkerDragListener(this);
         mlocationClient = new AMapLocationClient(this);
-//
         mLocationOption = new AMapLocationClientOption();
-//
         mlocationClient.setLocationListener(this);
-         mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
-
-         mLocationOption.setOnceLocation(true);
-
+        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+        mLocationOption.setOnceLocation(true);
         mlocationClient.setLocationOption(mLocationOption);
-
         mlocationClient.startLocation();
-          geocodeSearch = new GeocodeSearch(this);
+        geocodeSearch = new GeocodeSearch(this);
         geocodeSearch.setOnGeocodeSearchListener(this);
-
-
-
     }
 
     private void initView() {
         address = (TextView) findViewById(R.id.address);
-         ensure= (Button) findViewById(R.id.ensure);
+        ensure = (Button) findViewById(R.id.ensure);
         ensure.setOnClickListener(this);
     }
 
@@ -99,7 +94,6 @@ public class MapActivity extends AppCompatActivity implements  View.OnClickListe
         super.onResume();
         mapView.onResume();
     }
-
 
 
     @Override
@@ -111,7 +105,9 @@ public class MapActivity extends AppCompatActivity implements  View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view == ensure) {
-
+             intent.putExtra("map", (Serializable) map);
+            this.setResult(1,intent);
+            this.finish();
         }
     }
 
@@ -138,13 +134,19 @@ public class MapActivity extends AppCompatActivity implements  View.OnClickListe
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date date = new Date(aMapLocation.getTime());
                 df.format(date);//定位时间
+
+
+                address.setText(aMapLocation.getAddress());
+                map.put("lat",String.valueOf(aMapLocation.getLatitude()));
+                map.put("lon",String.valueOf(aMapLocation.getLongitude()));
+                map.put("address",aMapLocation.getAddress());
                 LatLng latLng = new LatLng(aMapLocation.getLatitude(), aMapLocation.getLongitude());
                 marker = aMap.addMarker(new MarkerOptions().position(latLng).title("北京").snippet("DefaultMarker"));
                 marker.setDraggable(true);
 
             } else {
                 //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
-                Log.e("AmapError","location Error, ErrCode:"
+                Log.e("AmapError", "location Error, ErrCode:"
                         + aMapLocation.getErrorCode() + ", errInfo:"
                         + aMapLocation.getErrorInfo());
             }
@@ -164,11 +166,12 @@ public class MapActivity extends AppCompatActivity implements  View.OnClickListe
     @Override
     public void onMarkerDragEnd(Marker marker) {
         System.out.println(marker.toString());
-        LatLng latLng=marker.getPosition();
-        map.put("lat",String.valueOf(latLng.latitude));
-        map.put("lon",String.valueOf(latLng.longitude));
+        LatLng latLng = marker.getPosition();
+        map.put("lat", String.valueOf(latLng.latitude));
+        map.put("lon", String.valueOf(latLng.longitude));
         getAddressByLatlng(marker.getPosition());
     }
+
     private void getAddressByLatlng(LatLng latLng) {
         //逆地理编码查询条件：逆地理编码查询的地理坐标点、查询范围、坐标类型。
         LatLonPoint latLonPoint = new LatLonPoint(latLng.latitude, latLng.longitude);
@@ -182,8 +185,7 @@ public class MapActivity extends AppCompatActivity implements  View.OnClickListe
         RegeocodeAddress regeocodeAddress = regeocodeResult.getRegeocodeAddress();
         String formatAddress = regeocodeAddress.getFormatAddress();
         address.setText(formatAddress);
-        map.put("address",formatAddress);
-
+        map.put("address", formatAddress);
     }
 
     @Override

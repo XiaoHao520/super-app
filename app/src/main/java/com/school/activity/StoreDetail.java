@@ -47,7 +47,7 @@ public class StoreDetail extends AppCompatActivity {
         map.put("id", id);
 
         intent.putExtra("data", (Serializable) map);
-        startActivity(intent);
+        startActivityForResult(intent,1);
     }
 
     @JavascriptInterface
@@ -55,5 +55,13 @@ public class StoreDetail extends AppCompatActivity {
         this.finish();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }
